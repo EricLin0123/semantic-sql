@@ -34,3 +34,20 @@ Each turn runs through a LangGraph pipeline:
 
 Generated SQL is printed to the console (dimmed, via `rich`) for debugging but never
 surfaced to the user as part of the answer.
+
+```mermaid
+flowchart TD
+    Start([user question]) --> generate_sql
+
+    generate_sql{{generate_sql}} -->|clarify| End([END: ask user])
+    generate_sql -->|sql produced / parse failed| validate_sql{{validate_sql}}
+
+    validate_sql -->|valid| execute_query{{execute_query}}
+    validate_sql -->|invalid & attempts < MAX| generate_sql
+    validate_sql -->|invalid & attempts >= MAX| compose_answer{{compose_answer}}
+
+    execute_query -->|ok| compose_answer
+    execute_query -->|db error & attempts < MAX| generate_sql
+
+    compose_answer --> Done([END: answer])
+```
