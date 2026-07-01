@@ -32,4 +32,5 @@ Each turn runs through a LangGraph pipeline:
 4. **compose_answer** — a separate LLM call, given only the question and result rows
    (never SQL-generation ability), writes the final natural-language answer.
 
-Generated SQL is printed to the console for debugging but never shown to the user.
+Generated SQL is printed to the console (dimmed, via `rich`) for debugging but never
+surfaced to the user as part of the answer.

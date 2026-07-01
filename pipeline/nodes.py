@@ -1,5 +1,7 @@
 import json
 
+from rich.console import Console
+
 from pipeline.db import get_schema_ddl, run_query
 from pipeline.llm import chat
 from pipeline.prompts import ANSWER_COMPOSITION_PROMPT, sql_generation_prompt
@@ -8,6 +10,7 @@ from pipeline.sql_guard import ALLOWED, validate_sql
 MAX_ATTEMPTS = 2
 
 _SCHEMA_DDL = get_schema_ddl()
+_console = Console(stderr=True)
 
 
 def _parse_json_response(raw: str) -> dict | None:
@@ -52,7 +55,7 @@ def generate_sql(state: dict) -> dict:
     elif action == "query":
         state["sql"] = parsed.get("sql", "")
         state["clarify"] = None
-        print(f"[debug] generated SQL: {state['sql']}")
+        _console.print(f"[dim]\\[debug] generated SQL: {state['sql']}[/dim]")
     else:
         state["last_error"] = f"unrecognized action: {action!r}"
         state["sql"] = None
