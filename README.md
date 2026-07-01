@@ -8,11 +8,13 @@ of guessing.
 
 ## Setup
 
+Package management is via [uv](https://docs.astral.sh/uv/).
+
 ```bash
-pip install -r requirements.txt
+uv sync
 cp .env.example .env   # then add your OPENROUTER_API_KEY
-python db/seed.py
-python chat.py
+uv run python db/seed.py
+uv run python chat.py
 ```
 
 ## How it works

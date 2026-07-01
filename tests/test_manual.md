@@ -1,6 +1,6 @@
 # Manual Acceptance Tests
 
-Run `python db/seed.py` then `python chat.py` and try each scenario.
+Run `uv run python db/seed.py` then `uv run python chat.py` and try each scenario.
 
 ## 1. Breakdown default
 > how many tables do we have?
@@ -47,5 +47,5 @@ an INSERT through the read-only connection in `pipeline/db.py` raises
 
 Run automated tests with:
 ```bash
-python tests/test_sql_guard.py
+uv run python tests/test_sql_guard.py
 ```
