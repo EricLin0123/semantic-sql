@@ -26,3 +26,24 @@ def run_query(sql: str) -> list[dict]:
 def get_schema_ddl() -> str:
     with open(_SCHEMA_PATH) as f:
         return f.read()
+
+
+def get_category_catalog() -> str:
+    conn = _connect()
+    try:
+        rows = conn.execute(
+            "SELECT furniture_category.name AS category, furniture_item.subtype AS subtype "
+            "FROM furniture_category "
+            "JOIN furniture_item ON furniture_item.category_id = furniture_category.id "
+            "ORDER BY furniture_category.name, furniture_item.subtype"
+        ).fetchall()
+    finally:
+        conn.close()
+
+    by_category: dict[str, list[str]] = {}
+    for row in rows:
+        by_category.setdefault(row["category"], []).append(row["subtype"])
+
+    return "\n".join(
+        f"- {category}: {', '.join(subtypes)}" for category, subtypes in by_category.items()
+    )

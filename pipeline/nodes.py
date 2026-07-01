@@ -2,7 +2,7 @@ import json
 
 from rich.console import Console
 
-from pipeline.db import get_schema_ddl, run_query
+from pipeline.db import get_category_catalog, get_schema_ddl, run_query
 from pipeline.llm import chat
 from pipeline.prompts import ANSWER_COMPOSITION_PROMPT, sql_generation_prompt
 from pipeline.sql_guard import ALLOWED, validate_sql
@@ -10,6 +10,7 @@ from pipeline.sql_guard import ALLOWED, validate_sql
 MAX_ATTEMPTS = 2
 
 _SCHEMA_DDL = get_schema_ddl()
+_CATALOG = get_category_catalog()
 _console = Console(stderr=True)
 
 
@@ -37,7 +38,7 @@ def generate_sql(state: dict) -> dict:
         )
     messages.append({"role": "user", "content": question})
 
-    raw = chat(sql_generation_prompt(_SCHEMA_DDL), messages)
+    raw = chat(sql_generation_prompt(_SCHEMA_DDL, _CATALOG), messages)
     parsed = _parse_json_response(raw)
 
     state["attempts"] = state.get("attempts", 0) + 1
@@ -56,6 +57,15 @@ def generate_sql(state: dict) -> dict:
         state["sql"] = parsed.get("sql", "")
         state["clarify"] = None
         _console.print(f"[dim]\\[debug] generated SQL: {state['sql']}[/dim]")
+    elif action == "not_found":
+        state["clarify"] = None
+        state["sql"] = None
+        item = parsed.get("item", "that item")
+        state["answer"] = (
+            f"We don't carry \"{item}\" — our inventory only covers: "
+            f"table, chair, couch, desk, bookshelf, dresser, bed frame, "
+            f"nightstand, and cabinet."
+        )
     else:
         state["last_error"] = f"unrecognized action: {action!r}"
         state["sql"] = None

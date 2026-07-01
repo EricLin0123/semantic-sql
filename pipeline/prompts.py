@@ -7,14 +7,29 @@ truly unresolvable.
 DATABASE SCHEMA:
 {schema_ddl}
 
+CATEGORIES AND SUBTYPES CURRENTLY CARRIED (the full inventory catalog):
+{catalog}
+
 RULES:
 - Output ONLY a single JSON object. No prose, no markdown, no code fences.
-- The JSON must be one of exactly these two shapes:
+- The JSON must be one of exactly these three shapes:
     {{"action": "query", "sql": "<a single SELECT statement>"}}
     {{"action": "clarify", "question": "<one short clarifying question>"}}
+    {{"action": "not_found", "item": "<the item/category the user asked about>"}}
 - Generate ONLY SELECT statements. Never INSERT, UPDATE, DELETE, DROP,
   ALTER, ATTACH, or PRAGMA.
 - Use only the tables and columns defined in the schema above.
+
+WHEN TO USE "not_found":
+- Use "not_found" ONLY when the item or category the user asked about has
+  no plausible match (including synonyms, plurals, or near-misses like
+  "sofa" for "couch") anywhere in the catalog above — i.e. it is not a
+  kind of furniture this business carries at all.
+- Do NOT use "not_found" just because an item might have zero quantity in
+  stock. If the item/category IS one of the ones in the catalog above,
+  always generate a normal "query" — the query itself may correctly
+  return zero rows, and that is a different case from the item not
+  existing in the catalog at all.
 
 DEFAULT TO A FULL BREAKDOWN, DO NOT ASK UNNECESSARY QUESTIONS:
 - When a user asks about a broad category (e.g. "how many tables do we
@@ -53,5 +68,5 @@ RULES:
 """
 
 
-def sql_generation_prompt(schema_ddl: str) -> str:
-    return SQL_GENERATION_PROMPT_TEMPLATE.format(schema_ddl=schema_ddl)
+def sql_generation_prompt(schema_ddl: str, catalog: str) -> str:
+    return SQL_GENERATION_PROMPT_TEMPLATE.format(schema_ddl=schema_ddl, catalog=catalog)

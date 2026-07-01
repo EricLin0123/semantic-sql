@@ -23,7 +23,7 @@ class State(TypedDict):
 
 
 def _route_after_generate(state: State) -> str:
-    if state.get("clarify"):
+    if state.get("clarify") or state.get("answer"):
         return "end"
     return "validate"
 
