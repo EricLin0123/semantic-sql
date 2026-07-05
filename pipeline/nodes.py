@@ -1,4 +1,5 @@
 import json
+import re
 
 from rich.console import Console
 
@@ -8,13 +9,28 @@ from pipeline.prompts import ANSWER_COMPOSITION_PROMPT, sql_generation_prompt
 from pipeline.query_memory import lookup, remember
 from pipeline.retrieval import normalize_question_text, retrieve_context
 from pipeline.sql_guard import ALLOWED, validate_sql
-from pipeline.templates import classify_intent, sql_for_intent
+from pipeline.templates import classify_intent, find_catalog_match, sql_for_intent
 
 MAX_ATTEMPTS = 2
 
 _CATALOG = get_category_catalog()
 _SAMPLES = sample_values()
 _console = Console(stderr=True)
+
+
+def _resolve_followup_question(question: str, conversation: list) -> str:
+    normalized = normalize_question_text(question)
+    if find_catalog_match(normalized, _SAMPLES["categories"], _SAMPLES["subtypes"]):
+        return normalized
+    if not re.search(r"\b(it|its|they|them|that|those|one)\b", normalized):
+        return normalized
+
+    for message in reversed(conversation):
+        content = normalize_question_text(str(message.get("content", "")))
+        match = find_catalog_match(content, _SAMPLES["categories"], _SAMPLES["subtypes"])
+        if match:
+            return f"{normalized} {match[1]}"
+    return normalized
 
 
 def _parse_json_response(raw: str) -> dict | None:
@@ -41,7 +57,7 @@ def _failure(state: dict, reason: str, failure_type: str) -> dict:
 
 
 def normalize_question(state: dict) -> dict:
-    state["normalized_question"] = normalize_question_text(state["question"])
+    state["normalized_question"] = _resolve_followup_question(state["question"], state.get("conversation", []))
     state.setdefault("trace", []).append({"node": "normalize_question"})
     return state
 
@@ -77,6 +93,12 @@ def generate_or_template_sql(state: dict) -> dict:
         state["sql_source"] = "clarify"
         return state
 
+    if intent.get("kind") == "fallback":
+        state["answer"] = intent.get("answer", "I can answer furniture inventory questions about quantity, price, value, category, and location.")
+        state["sql"] = None
+        state["sql_source"] = "fallback"
+        return state
+
     if state.get("memory_hit"):
         state["sql"] = state["memory_hit"]["sql"]
         state["sql_source"] = "cache"
@@ -99,7 +121,15 @@ def generate_or_template_sql(state: dict) -> dict:
         )
     messages.append({"role": "user", "content": question})
 
-    raw = chat(sql_generation_prompt(state["context"]), messages)
+    try:
+        raw = chat(sql_generation_prompt(state["context"]), messages)
+    except Exception as e:
+        state["answer"] = "I can answer furniture inventory questions about quantity, price, value, category, and location."
+        state["last_error"] = f"llm error: {e}"
+        state["failure_type"] = "llm_error"
+        state["sql"] = None
+        state["sql_source"] = "fallback"
+        return state
     parsed = _parse_json_response(raw)
     state["attempts"] = state.get("attempts", 0) + 1
     state["sql_source"] = "llm"
@@ -205,6 +235,21 @@ def _deterministic_answer(state: dict) -> str | None:
     if template == "subtype_quantity":
         row = rows[0]
         return f"You have {row.get('quantity') or 0} {row.get('subtype', 'matching items')}."
+    if template == "subtype_price":
+        row = rows[0]
+        return f"A {row.get('subtype')} costs {_format_money(row.get('unit_price'))}."
+    if template == "category_price_breakdown":
+        category = intent.get("category", "category")
+        parts = ", ".join(f"{row['subtype']}: {_format_money(row.get('unit_price'))}" for row in rows)
+        return f"Prices for {category} items are: {parts}."
+    if template == "subtype_location":
+        parts = ", ".join(f"{row['location']}: {row['quantity']}" for row in rows)
+        return f"{rows[0].get('subtype')} is located at {parts}."
+    if template == "category_location_breakdown":
+        category = intent.get("category", "items")
+        total = sum(row.get("quantity") or 0 for row in rows)
+        parts = ", ".join(f"{row['location']}: {row['quantity']}" for row in rows)
+        return f"You have {total} {category} items across locations: {parts}."
     if template == "location_breakdown":
         total = sum(row.get("quantity") or 0 for row in rows)
         parts = ", ".join(f"{row['location']}: {row['quantity']}" for row in rows)
@@ -233,7 +278,10 @@ def format_answer(state: dict) -> dict:
         return state
 
     payload = json.dumps({"question": question, "rows": rows if rows is not None else []})
-    answer = chat(ANSWER_COMPOSITION_PROMPT, [{"role": "user", "content": payload}])
+    try:
+        answer = chat(ANSWER_COMPOSITION_PROMPT, [{"role": "user", "content": payload}])
+    except Exception:
+        answer = "I found matching inventory data, but could not format a detailed answer right now."
     state["answer"] = answer
     return state
 

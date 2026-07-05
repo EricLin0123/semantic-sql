@@ -11,7 +11,7 @@ def _quote(value: str) -> str:
     return value.replace("'", "''")
 
 
-def _find_catalog_match(question: str, categories: list[str], subtypes: list[str]) -> tuple[str, str] | None:
+def find_catalog_match(question: str, categories: list[str], subtypes: list[str]) -> tuple[str, str] | None:
     for subtype in sorted(subtypes, key=len, reverse=True):
         if re.search(rf"\b{re.escape(subtype)}s?\b", question):
             return "subtype", subtype
@@ -24,12 +24,24 @@ def _find_catalog_match(question: str, categories: list[str], subtypes: list[str
 def classify_intent(question: str, categories: list[str], subtypes: list[str]) -> dict:
     normalized = normalize_question_text(question)
 
+    if _contains_any(normalized, ("are you sure", "is that right", "is this right", "really", "confirm")):
+        return {"kind": "fallback", "answer": "Yes, that answer is based on the current inventory data."}
+
+    if _contains_any(normalized, ("thanks", "thank you")):
+        return {"kind": "fallback", "answer": "You are welcome."}
+
     if _contains_any(normalized, ("tell me", "about furniture", "about the furniture", "overview")) and not _contains_any(
         normalized, ("count", "many", "total", "value", "worth", "location", "where", "list")
     ):
         return {"kind": "ambiguous", "reason": "missing requested metric"}
 
-    match = _find_catalog_match(normalized, categories, subtypes)
+    match = find_catalog_match(normalized, categories, subtypes)
+
+    if _contains_any(normalized, ("price", "cost", "how much")):
+        if match and match[0] == "subtype":
+            return {"kind": "template", "template": "subtype_price", "subtype": match[1]}
+        if match and match[0] == "category":
+            return {"kind": "template", "template": "category_price_breakdown", "category": match[1]}
 
     if _contains_any(normalized, ("value", "worth", "valuation")):
         if match and match[0] == "category":
@@ -37,6 +49,10 @@ def classify_intent(question: str, categories: list[str], subtypes: list[str]) -
         return {"kind": "template", "template": "total_inventory_value"}
 
     if _contains_any(normalized, ("where", "location", "locations", "warehouse", "floor", "showroom")):
+        if match and match[0] == "subtype":
+            return {"kind": "template", "template": "subtype_location", "subtype": match[1]}
+        if match and match[0] == "category":
+            return {"kind": "template", "template": "category_location_breakdown", "category": match[1]}
         return {"kind": "template", "template": "location_breakdown"}
 
     if _contains_any(normalized, ("categories", "kinds", "types carried", "what do we carry", "list")):
@@ -49,7 +65,10 @@ def classify_intent(question: str, categories: list[str], subtypes: list[str]) -
             return {"kind": "template", "template": "category_quantity_breakdown", "category": match[1]}
         return {"kind": "template", "template": "total_quantity"}
 
-    return {"kind": "llm"}
+    return {
+        "kind": "fallback",
+        "answer": "I can answer furniture inventory questions about quantity, price, value, category, and location.",
+    }
 
 
 def sql_for_intent(intent: dict) -> str | None:
@@ -74,6 +93,44 @@ def sql_for_intent(intent: dict) -> str | None:
             "FROM furniture_item "
             f"WHERE furniture_item.subtype = '{subtype}' "
             "GROUP BY furniture_item.subtype "
+            "LIMIT 100"
+        )
+    if template == "subtype_price":
+        subtype = _quote(intent["subtype"])
+        return (
+            "SELECT subtype, unit_price "
+            "FROM furniture_item "
+            f"WHERE subtype = '{subtype}' "
+            "LIMIT 100"
+        )
+    if template == "category_price_breakdown":
+        category = _quote(intent["category"])
+        return (
+            "SELECT furniture_item.subtype, furniture_item.unit_price "
+            "FROM furniture_item "
+            "JOIN furniture_category ON furniture_item.category_id = furniture_category.id "
+            f"WHERE furniture_category.name = '{category}' "
+            "ORDER BY furniture_item.subtype "
+            "LIMIT 100"
+        )
+    if template == "subtype_location":
+        subtype = _quote(intent["subtype"])
+        return (
+            "SELECT subtype, location, quantity "
+            "FROM furniture_item "
+            f"WHERE subtype = '{subtype}' "
+            "ORDER BY location "
+            "LIMIT 100"
+        )
+    if template == "category_location_breakdown":
+        category = _quote(intent["category"])
+        return (
+            "SELECT furniture_item.location, SUM(furniture_item.quantity) AS quantity "
+            "FROM furniture_item "
+            "JOIN furniture_category ON furniture_item.category_id = furniture_category.id "
+            f"WHERE furniture_category.name = '{category}' "
+            "GROUP BY furniture_item.location "
+            "ORDER BY furniture_item.location "
             "LIMIT 100"
         )
     if template == "location_breakdown":

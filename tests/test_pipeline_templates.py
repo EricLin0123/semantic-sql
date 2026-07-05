@@ -38,8 +38,80 @@ def test_ambiguous_question_clarifies_without_llm():
     assert "quantity" in result["question"].lower()
 
 
+def test_price_question_returns_unit_price_not_quantity():
+    from db.seed import main as seed_db
+
+    seed_db()
+    from pipeline.graph import run_turn
+
+    result = run_turn("How much is a square table?", [])
+    assert result["type"] == "answer"
+    assert "$120.00" in result["answer"]
+    assert "You have 10" not in result["answer"]
+
+
+def test_location_followup_uses_previous_catalog_item():
+    from db.seed import main as seed_db
+
+    seed_db()
+    from pipeline.graph import run_turn
+
+    conversation = []
+    first = run_turn("How much is a square table?", conversation)
+    conversation.append({"role": "user", "content": "How much is a square table?"})
+    conversation.append({"role": "assistant", "content": first["answer"]})
+
+    result = run_turn("Where are they?", conversation)
+    assert result["type"] == "answer"
+    assert "Warehouse A" in result["answer"]
+    assert "242 pieces" not in result["answer"]
+
+
+def test_price_followup_one_uses_previous_catalog_item():
+    from db.seed import main as seed_db
+
+    seed_db()
+    from pipeline.graph import run_turn
+
+    conversation = []
+    first = run_turn("How many recliner?", conversation)
+    conversation.append({"role": "user", "content": "How many recliner?"})
+    conversation.append({"role": "assistant", "content": first["answer"]})
+
+    result = run_turn("How much is one?", conversation)
+    assert result["type"] == "answer"
+    assert "$310.00" in result["answer"]
+
+
+def test_confirmation_question_uses_short_fallback():
+    from db.seed import main as seed_db
+
+    seed_db()
+    from pipeline.graph import run_turn
+
+    result = run_turn("Are you sure?", [])
+    assert result["type"] == "answer"
+    assert "inventory data" in result["answer"].lower()
+
+
+def test_unrelated_question_uses_short_fallback_without_llm():
+    from db.seed import main as seed_db
+
+    seed_db()
+    from pipeline.graph import run_turn
+
+    result = run_turn("What is the weather today?", [])
+    assert result["type"] == "answer"
+    assert "furniture inventory" in result["answer"].lower()
+
+
 if __name__ == "__main__":
     test_template_total_quantity()
     test_template_category_breakdown_includes_current_seed_data()
     test_ambiguous_question_clarifies_without_llm()
+    test_price_question_returns_unit_price_not_quantity()
+    test_location_followup_uses_previous_catalog_item()
+    test_price_followup_one_uses_previous_catalog_item()
+    test_confirmation_question_uses_short_fallback()
+    test_unrelated_question_uses_short_fallback_without_llm()
     print("All template tests passed.")
