@@ -83,6 +83,41 @@ def test_price_followup_one_uses_previous_catalog_item():
     assert "$310.00" in result["answer"]
 
 
+def test_fallback_question_can_answer_from_conversation_history():
+    from db.seed import main as seed_db
+
+    seed_db()
+    import pipeline.graph as graph
+    import pipeline.nodes as nodes
+    from pipeline.prompts import HISTORY_FALLBACK_PROMPT
+
+    original_chat = nodes.chat
+    graph._compiled_graph = None
+
+    def fake_chat(system, messages):
+        assert system == HISTORY_FALLBACK_PROMPT
+        assert "what is the total cost?" in messages[0]["content"]
+        assert "You have 4 corner desk." in messages[0]["content"]
+        assert "A corner desk costs $300.00." in messages[0]["content"]
+        return '{"action": "answer", "answer": "The total cost is 4 * $300.00 = $1,200.00."}'
+
+    nodes.chat = fake_chat
+    try:
+        conversation = [
+            {"role": "user", "content": "How many corner desk?"},
+            {"role": "assistant", "content": "You have 4 corner desk."},
+            {"role": "user", "content": "How much is one?"},
+            {"role": "assistant", "content": "A corner desk costs $300.00."},
+        ]
+        result = graph.run_turn("what is the total cost?", conversation)
+    finally:
+        nodes.chat = original_chat
+        graph._compiled_graph = None
+
+    assert result["type"] == "answer"
+    assert "$1,200.00" in result["answer"]
+
+
 def test_confirmation_question_uses_short_fallback():
     from db.seed import main as seed_db
 
@@ -112,6 +147,7 @@ if __name__ == "__main__":
     test_price_question_returns_unit_price_not_quantity()
     test_location_followup_uses_previous_catalog_item()
     test_price_followup_one_uses_previous_catalog_item()
+    test_fallback_question_can_answer_from_conversation_history()
     test_confirmation_question_uses_short_fallback()
     test_unrelated_question_uses_short_fallback_without_llm()
     print("All template tests passed.")

@@ -59,6 +59,25 @@ RULES:
   given rows.
 """
 
+HISTORY_FALLBACK_PROMPT = """You are a furniture inventory assistant.
+The normal database-query path could not map the current user question
+to a direct inventory query. Before falling back, decide whether the
+question can still be answered from the prior conversation alone.
+
+RULES:
+- Output ONLY a single JSON object. No prose, no markdown, no code fences.
+- The JSON must be one of exactly these two shapes:
+    {"action": "answer", "answer": "<short answer based on prior conversation>"}
+    {"action": "fallback"}
+- Use ONLY facts already stated in the conversation. Do not invent
+  inventory counts, prices, categories, locations, or database facts.
+- You may do simple arithmetic using numbers from the conversation.
+- If the user asks an unrelated question, greets you, thanks you, or asks
+  something that cannot be answered from the conversation, use
+  {"action": "fallback"}.
+- Do not mention the fallback decision or database mechanics.
+"""
+
 
 def sql_generation_prompt(context: str) -> str:
     return SQL_GENERATION_PROMPT_TEMPLATE.format(context=context)

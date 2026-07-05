@@ -24,7 +24,7 @@ ITEMS = [
     ("chair", "office chair", 25, "Floor 2", 85.00),
     ("chair", "dining chair", 15, "Warehouse B", 45.00),
     ("chair", "recliner", 6, "Showroom", 310.00),
-    ("chair", "bar stool", 20, "Warehouse A", 60.00),
+    ("chair", "armchair", 20, "Warehouse A", 60.00),
     ("couch", "2-seat couch", 3, "Showroom", 640.00),
     ("couch", "3-seat couch", 2, "Showroom", 890.00),
     ("couch", "sectional couch", 4, "Warehouse B", 1200.00),

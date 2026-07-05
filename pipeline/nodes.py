@@ -5,7 +5,7 @@ from rich.console import Console
 
 from pipeline.db import explain, get_category_catalog, run_readonly, sample_values
 from pipeline.llm import chat
-from pipeline.prompts import ANSWER_COMPOSITION_PROMPT, sql_generation_prompt
+from pipeline.prompts import ANSWER_COMPOSITION_PROMPT, HISTORY_FALLBACK_PROMPT, sql_generation_prompt
 from pipeline.query_memory import lookup, remember
 from pipeline.retrieval import normalize_question_text, retrieve_context
 from pipeline.sql_guard import ALLOWED, validate_sql
@@ -56,6 +56,33 @@ def _failure(state: dict, reason: str, failure_type: str) -> dict:
     return state
 
 
+def _answer_from_history_or_none(state: dict) -> str | None:
+    conversation = state.get("conversation") or []
+    if not conversation:
+        return None
+
+    payload = json.dumps(
+        {
+            "current_question": state["question"],
+            "conversation": conversation[-8:],
+        }
+    )
+    try:
+        raw = chat(HISTORY_FALLBACK_PROMPT, [{"role": "user", "content": payload}])
+    except Exception as e:
+        state["last_error"] = f"history fallback llm error: {e}"
+        return None
+
+    parsed = _parse_json_response(raw)
+    if parsed is None:
+        state["last_error"] = f"history fallback response was not valid JSON: {raw[:200]}"
+        return None
+
+    if parsed.get("action") == "answer" and str(parsed.get("answer", "")).strip():
+        return str(parsed["answer"]).strip()
+    return None
+
+
 def normalize_question(state: dict) -> dict:
     state["normalized_question"] = _resolve_followup_question(state["question"], state.get("conversation", []))
     state.setdefault("trace", []).append({"node": "normalize_question"})
@@ -94,9 +121,17 @@ def generate_or_template_sql(state: dict) -> dict:
         return state
 
     if intent.get("kind") == "fallback":
-        state["answer"] = intent.get("answer", "I can answer furniture inventory questions about quantity, price, value, category, and location.")
+        fallback_answer = intent.get(
+            "answer",
+            "I can answer furniture inventory questions about quantity, price, value, category, and location.",
+        )
+        history_answer = _answer_from_history_or_none(state)
+        state["answer"] = history_answer or fallback_answer
         state["sql"] = None
-        state["sql_source"] = "fallback"
+        state["sql_source"] = "history_fallback" if history_answer else "fallback"
+        state.setdefault("trace", []).append(
+            {"node": "generate_or_template_sql", "source": state.get("sql_source")}
+        )
         return state
 
     if state.get("memory_hit"):
