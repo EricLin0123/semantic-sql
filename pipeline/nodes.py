@@ -56,31 +56,55 @@ def _failure(state: dict, reason: str, failure_type: str) -> dict:
     return state
 
 
+def _format_history_total_cost(quantity: int, unit_price: float) -> str:
+    return f"The total cost is {quantity} * {_format_money(unit_price)} = {_format_money(quantity * unit_price)}."
+
+
+def _answer_total_cost_from_history(question: str, conversation: list) -> str | None:
+    normalized = normalize_question_text(question)
+    if not re.search(r"\btotal\b", normalized) or not re.search(r"\b(cost|price|value|amount)\b", normalized):
+        return None
+
+    assistant_text = "\n".join(
+        str(message.get("content", "")) for message in conversation[-8:] if message.get("role") == "assistant"
+    )
+    quantity_match = re.search(r"\b(?:you have|there are)\s+(\d+)\s+([a-z0-9 -]+?)(?:\.|$)", assistant_text, re.I)
+    if not quantity_match:
+        return None
+
+    quantity = int(quantity_match.group(1))
+    item = quantity_match.group(2).strip().rstrip("s")
+    price_match = re.search(
+        rf"\b(?:a|an|one)\s+{re.escape(item)}s?\s+costs\s+\$([0-9][0-9,]*(?:\.[0-9]+)?)",
+        assistant_text,
+        re.I,
+    )
+    if not price_match:
+        return None
+
+    unit_price = float(price_match.group(1).replace(",", ""))
+    return _format_history_total_cost(quantity, unit_price)
+
+
 def _answer_from_history_or_none(state: dict) -> str | None:
     conversation = state.get("conversation") or []
     if not conversation:
         return None
 
-    payload = json.dumps(
-        {
-            "current_question": state["question"],
-            "conversation": conversation[-8:],
-        }
-    )
+    messages = list(conversation[-8:])
+    messages.append({"role": "user", "content": state["question"]})
     try:
-        raw = chat(HISTORY_FALLBACK_PROMPT, [{"role": "user", "content": payload}])
+        raw = chat(HISTORY_FALLBACK_PROMPT, messages)
     except Exception as e:
         state["last_error"] = f"history fallback llm error: {e}"
-        return None
+    else:
+        parsed = _parse_json_response(raw)
+        if parsed is None:
+            state["last_error"] = f"history fallback response was not valid JSON: {raw[:200]}"
+        elif parsed.get("action") == "answer" and str(parsed.get("answer", "")).strip():
+            return str(parsed["answer"]).strip()
 
-    parsed = _parse_json_response(raw)
-    if parsed is None:
-        state["last_error"] = f"history fallback response was not valid JSON: {raw[:200]}"
-        return None
-
-    if parsed.get("action") == "answer" and str(parsed.get("answer", "")).strip():
-        return str(parsed["answer"]).strip()
-    return None
+    return _answer_total_cost_from_history(state["question"], conversation)
 
 
 def normalize_question(state: dict) -> dict:
@@ -90,7 +114,7 @@ def normalize_question(state: dict) -> dict:
 
 
 def classify_intent_node(state: dict) -> dict:
-    memory_hit = lookup(state["question"])
+    memory_hit = lookup(state["normalized_question"])
     if memory_hit:
         state["memory_hit"] = memory_hit
         state["intent"] = memory_hit.get("intent") or {"kind": "cache"}
@@ -326,6 +350,12 @@ compose_answer = format_answer
 
 def record_trace(state: dict) -> dict:
     if state.get("sql") and state.get("rows") is not None and not state.get("last_error"):
-        remember(state["question"], state["sql"], state["rows"], state.get("sql_source", "unknown"), state.get("intent"))
+        remember(
+            state["normalized_question"],
+            state["sql"],
+            state["rows"],
+            state.get("sql_source", "unknown"),
+            state.get("intent"),
+        )
     state.setdefault("trace", []).append({"node": "record_trace", "source": state.get("sql_source")})
     return state

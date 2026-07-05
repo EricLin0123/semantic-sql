@@ -72,6 +72,8 @@ RULES:
 - Use ONLY facts already stated in the conversation. Do not invent
   inventory counts, prices, categories, locations, or database facts.
 - You may do simple arithmetic using numbers from the conversation.
+- If the user asks for total cost after a quantity and a unit price
+  were discussed, multiply the quantity by the unit price.
 - If the user asks an unrelated question, greets you, thanks you, or asks
   something that cannot be answered from the conversation, use
   {"action": "fallback"}.
