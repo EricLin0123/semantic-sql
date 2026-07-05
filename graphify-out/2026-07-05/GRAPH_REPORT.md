@@ -1,16 +1,16 @@
 # Graph Report - semantic-sql  (2026-07-05)
 
 ## Corpus Check
-- 24 files · ~9,543 words
+- 25 files · ~12,306 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 180 nodes · 288 edges · 36 communities (13 shown, 23 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
+- 194 nodes · 301 edges · 37 communities (14 shown, 23 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8a7b3113`
+- Built from commit: `f8da8f4e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -22,6 +22,7 @@
 - [[_COMMUNITY_Safety Documentation|Safety Documentation]]
 - [[_COMMUNITY_Database Access Layer|Database Access Layer]]
 - [[_COMMUNITY_SQL Validator Internals|SQL Validator Internals]]
+- [[_COMMUNITY_presentation|presentation.md]]
 - [[_COMMUNITY_LLM Call Separation|LLM Call Separation]]
 - [[_COMMUNITY_OpenRouter Client|OpenRouter Client]]
 - [[_COMMUNITY_Clarification Behavior|Clarification Behavior]]
@@ -77,11 +78,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (36 total, 23 thin omitted)
+## Communities (37 total, 23 thin omitted)
 
 ### Community 0 - "Pipeline Node Logic"
-Cohesion: 0.17
-Nodes (22): OpenAI, chat(), _get_client(), _answer_from_history_or_none(), _answer_total_cost_from_history(), _deterministic_answer(), _failure(), format_answer() (+14 more)
+Cohesion: 0.15
+Nodes (25): OpenAI, chat(), _get_client(), _answer_from_history_or_none(), _answer_total_cost_from_history(), classify_intent_node(), _deterministic_answer(), _failure() (+17 more)
 
 ### Community 1 - "SQL Guard Tests"
 Cohesion: 0.22
@@ -93,19 +94,23 @@ Nodes (12): main(), main(), run_turn(), test_ambiguous_question_clarifies_withou
 
 ### Community 3 - "Graph Routing Flow"
 Cohesion: 0.29
-Nodes (15): build_graph(), _can_retry(), _route_after_execute(), _route_after_explain(), _route_after_generate(), _route_after_validate(), State, classify_intent_node() (+7 more)
+Nodes (15): build_graph(), _can_retry(), _route_after_execute(), _route_after_explain(), _route_after_generate(), _route_after_validate(), State, dry_run_explain() (+7 more)
 
 ### Community 4 - "Safety Documentation"
-Cohesion: 0.40
-Nodes (4): Furniture Natural-Language Query Tool, How it works, Setup, Tests
+Cohesion: 0.33
+Nodes (5): Example usage, Furniture Natural-Language Query Tool, How it works, Setup, Tests
 
 ### Community 5 - "Database Access Layer"
 Cohesion: 0.29
 Nodes (9): Connection, _connect(), explain(), get_category_catalog(), introspect_schema(), run_query(), run_readonly(), sample_values() (+1 more)
 
 ### Community 6 - "SQL Validator Internals"
-Cohesion: 0.21
-Nodes (14): Expression, retrieve_context(), _tokens(), allowed_schema(), Column, semantic_context_text(), Table, _collect_ctes() (+6 more)
+Cohesion: 0.27
+Nodes (11): Expression, allowed_schema(), Column, Table, _collect_ctes(), _function_name(), _has_limit(), _projection_is_aggregate_or_literal() (+3 more)
+
+### Community 7 - "presentation.md"
+Cohesion: 0.15
+Nodes (12): Slide 1, Slide 10, Slide 11, Slide 12, Slide 2, Slide 3, Slide 4, Slide 5 (+4 more)
 
 ### Community 9 - "OpenRouter Client"
 Cohesion: 0.10
@@ -124,7 +129,7 @@ Cohesion: 0.33
 Nodes (4): Architecture, Commands, Guardrails specific to this project, What this is
 
 ## Knowledge Gaps
-- **58 isolated node(s):** `Column`, `Table`, `furniture-nlq`, `Project Structure & Module Organization`, `Build, Test, and Development Commands` (+53 more)
+- **71 isolated node(s):** `Column`, `Table`, `furniture-nlq`, `Project Structure & Module Organization`, `Build, Test, and Development Commands` (+66 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -132,14 +137,14 @@ Nodes (4): Architecture, Commands, Guardrails specific to this project, What thi
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `run_turn()` connect `REPL Template Tests` to `Graph Routing Flow`?**
-  _High betweenness centrality (0.079) - this node is a cross-community bridge._
+  _High betweenness centrality (0.068) - this node is a cross-community bridge._
 - **Why does `validate_sql()` connect `SQL Validator Internals` to `Pipeline Node Logic`, `SQL Guard Tests`, `Graph Routing Flow`?**
-  _High betweenness centrality (0.072) - this node is a cross-community bridge._
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
 - **Why does `build_graph()` connect `Graph Routing Flow` to `Pipeline Node Logic`, `REPL Template Tests`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
 - **Are the 14 inferred relationships involving `build_graph()` (e.g. with `_route_after_execute()` and `_route_after_explain()`) actually correct?**
   _`build_graph()` has 14 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Column`, `Table`, `furniture-nlq` to the rest of the system?**
-  _64 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _77 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `OpenRouter Client` be split into smaller, more focused modules?**
   _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._

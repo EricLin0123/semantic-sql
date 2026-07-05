@@ -61,7 +61,17 @@ graph TD
 ```
 
 Speaker Notes:
-The architecture keeps model behavior behind a controlled graph. The LLM can suggest a query, but it cannot bypass validation, dry-run checks, or the read-only database connection.
+The architecture keeps model behavior behind a controlled graph. Each module has a narrow responsibility:
+- Terminal User: asks business questions in plain English.
+- `chat.py` REPL: captures input, preserves conversation history, and displays answers or clarifying questions.
+- LangGraph StateGraph: coordinates the workflow, state transitions, retries, and terminal routing decisions.
+- Deterministic Templates: handles high-confidence common inventory questions without an LLM call.
+- Semantic Context Retrieval: supplies schema, joins, synonyms, and catalog values so LLM generation is grounded.
+- OpenRouter LLM: produces structured SQL-generation actions only for questions outside the template path.
+- SQL Guard: parses and validates SQL policy before any database execution is allowed.
+- EXPLAIN Dry Run: asks SQLite to plan the query first, catching execution issues before running it.
+- SQLite Read-Only DB: stores inventory data and enforces the second safety layer with read-only connections.
+- Answer Formatter: turns result rows into short business-readable answers without exposing SQL mechanics.
 
 Visual Suggestion:
 Architecture diagram from the Mermaid graph.
@@ -132,7 +142,15 @@ flowchart TD
 ```
 
 Speaker Notes:
-This pipeline is designed around fail-closed behavior. A successful answer must pass through multiple checkpoints; a bad query becomes a retry or a graceful rephrase request.
+The pipeline starts when the user enters a plain-English inventory question in the terminal. The system first normalizes the text by trimming whitespace, lowercasing, applying business synonyms, and resolving simple follow-up references such as "they" or "one" against recent conversation history. Next, it classifies the intent: if the request matches a known inventory pattern, such as quantity, price, value, location, or category list, the system uses a deterministic SQL template; if the request is vague, it asks a clarifying question; if it is outside the product domain, it returns a controlled fallback answer.
+
+For questions that need SQL, the system retrieves compact schema context, known catalog values, approved join paths, and sample values so generation is grounded in the actual database shape. Common questions take the template path, which avoids model latency and reduces risk. Less predictable questions go to the OpenRouter LLM, but the model must return structured JSON that either contains a single SQL query or a clarification request.
+
+Before anything reaches the database, the SQL guard parses the query with `sqlglot` and rejects unsafe or unsupported SQL, including writes, chained statements, comments, schema probes, unknown tables or columns, unsafe functions, recursive CTEs, `SELECT *`, and unbounded row-returning queries. If an LLM-generated query fails validation, the graph can send the validation reason back for one bounded retry; template queries are not retried through the model.
+
+After validation, the system runs `EXPLAIN QUERY PLAN` as a dry-run planning check. This asks SQLite whether it can plan the query without returning business rows yet. If the plan succeeds, the query runs through the database layer, which opens SQLite in read-only mode, caps returned rows, and uses a progress handler to limit runaway work.
+
+Finally, the answer formatter converts rows into a short business-readable response. Template results use deterministic formatting, while LLM-generated SQL uses a separate answer-composition prompt that can only summarize rows and cannot generate SQL. The approved query shape is recorded in process memory so similar follow-up questions can be answered more consistently during the same session. The overall design is fail-closed: every successful answer has passed routing, validation, dry-run planning, and read-only execution.
 
 Visual Suggestion:
 Mermaid flowchart with safety gates highlighted.

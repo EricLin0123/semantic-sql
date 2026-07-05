@@ -6,6 +6,7 @@
   "4": "Safety Documentation",
   "5": "Database Access Layer",
   "6": "SQL Validator Internals",
+  "7": "presentation.md",
   "8": "LLM Call Separation",
   "9": "OpenRouter Client",
   "10": "Clarification Behavior",
