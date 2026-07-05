@@ -47,6 +47,21 @@ flowchart TD
     record_trace --> Done([END])
 ```
 
+## Example usage
+
+```bash
+uv run python chat.py
+Furniture inventory assistant — ask a question, or type 'exit' to quit.
+you> How many round table?
+bot> You have 5 round table.
+you> How much is one?
+bot> A round table costs $150.00.
+you> What is the total cost?
+bot> The total cost is 5 * $150.00 = $750.00.
+you> Where are they?
+bot> round table is located at Warehouse A: 5
+```
+
 ## Tests
 
 ```bash
