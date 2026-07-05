@@ -95,14 +95,9 @@
     "semantic_hash": "06ff44bcf3a3553259db069f3535b209"
   },
   "README.md": {
-    "mtime": 1783224105.9182956,
-    "ast_hash": "dcff8aa1d38b0f1955fc09bfb24700ca",
-    "semantic_hash": "dcff8aa1d38b0f1955fc09bfb24700ca"
-  },
-  "docs/improvement.md": {
-    "mtime": 1783224105.9182956,
-    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
-    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "mtime": 1783226440.2303288,
+    "ast_hash": "e935a7fa0296b00b0166b4ea87fa4d34",
+    "semantic_hash": ""
   },
   "docs/plan.md": {
     "mtime": 1782891935.0562017,
@@ -117,6 +112,16 @@
   ".codex/hooks.json": {
     "mtime": 1783224181.9733474,
     "ast_hash": "9c196f8402437ba83fab6c56e7b1eabf",
+    "semantic_hash": ""
+  },
+  "docs/presentation-prompt.md": {
+    "mtime": 1783227122.7688947,
+    "ast_hash": "f60c937f52590edde835f979552de816",
+    "semantic_hash": ""
+  },
+  "docs/presentation.md": {
+    "mtime": 1783227378.2930934,
+    "ast_hash": "0bf043022e9e30b76f1c825ee290240c",
     "semantic_hash": ""
   }
 }

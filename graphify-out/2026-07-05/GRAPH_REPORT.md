@@ -1,16 +1,16 @@
 # Graph Report - semantic-sql  (2026-07-05)
 
 ## Corpus Check
-- 24 files · ~9,371 words
+- 24 files · ~9,543 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 178 nodes · 282 edges · 37 communities (14 shown, 23 thin omitted)
+- 180 nodes · 288 edges · 36 communities (13 shown, 23 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `12450079`
+- Built from commit: `8a7b3113`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -22,7 +22,6 @@
 - [[_COMMUNITY_Safety Documentation|Safety Documentation]]
 - [[_COMMUNITY_Database Access Layer|Database Access Layer]]
 - [[_COMMUNITY_SQL Validator Internals|SQL Validator Internals]]
-- [[_COMMUNITY_Retrieval Semantic Context|Retrieval Semantic Context]]
 - [[_COMMUNITY_LLM Call Separation|LLM Call Separation]]
 - [[_COMMUNITY_OpenRouter Client|OpenRouter Client]]
 - [[_COMMUNITY_Clarification Behavior|Clarification Behavior]]
@@ -61,7 +60,7 @@
 7. `Manual Acceptance Tests` - 10 edges
 8. `_connect()` - 9 edges
 9. `generate_or_template_sql()` - 9 edges
-10. `State` - 8 edges
+10. `normalize_question_text()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `main()` --calls--> `run_turn()`  [EXTRACTED]
@@ -78,11 +77,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (37 total, 23 thin omitted)
+## Communities (36 total, 23 thin omitted)
 
 ### Community 0 - "Pipeline Node Logic"
-Cohesion: 0.18
-Nodes (20): OpenAI, chat(), _get_client(), _answer_from_history_or_none(), _deterministic_answer(), _failure(), format_answer(), _format_money() (+12 more)
+Cohesion: 0.17
+Nodes (22): OpenAI, chat(), _get_client(), _answer_from_history_or_none(), _answer_total_cost_from_history(), _deterministic_answer(), _failure(), format_answer() (+14 more)
 
 ### Community 1 - "SQL Guard Tests"
 Cohesion: 0.22
@@ -105,12 +104,8 @@ Cohesion: 0.29
 Nodes (9): Connection, _connect(), explain(), get_category_catalog(), introspect_schema(), run_query(), run_readonly(), sample_values() (+1 more)
 
 ### Community 6 - "SQL Validator Internals"
-Cohesion: 0.44
-Nodes (8): Expression, _collect_ctes(), _function_name(), _has_limit(), _projection_is_aggregate_or_literal(), _returns_single_aggregate_row(), validate_sql(), Select
-
-### Community 7 - "Retrieval Semantic Context"
-Cohesion: 0.36
-Nodes (6): retrieve_context(), _tokens(), allowed_schema(), Column, semantic_context_text(), Table
+Cohesion: 0.21
+Nodes (14): Expression, retrieve_context(), _tokens(), allowed_schema(), Column, semantic_context_text(), Table, _collect_ctes() (+6 more)
 
 ### Community 9 - "OpenRouter Client"
 Cohesion: 0.10
