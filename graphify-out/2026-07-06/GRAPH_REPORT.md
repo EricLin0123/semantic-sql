@@ -1,16 +1,16 @@
-# Graph Report - semantic-sql  (2026-07-06)
+# Graph Report - semantic-sql  (2026-07-05)
 
 ## Corpus Check
-- 26 files · ~16,829 words
+- 25 files · ~12,635 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 272 nodes · 378 edges · 54 communities (27 shown, 27 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
+- 194 nodes · 301 edges · 37 communities (14 shown, 23 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `81f685a0`
+- Built from commit: `f8da8f4e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -50,35 +50,18 @@
 - [[_COMMUNITY_Breakdown Default Scenario|Breakdown Default Scenario]]
 - [[_COMMUNITY_Clarify Path Scenario|Clarify Path Scenario]]
 - [[_COMMUNITY_Safety Automated Checks|Safety Automated Checks]]
-- [[_COMMUNITY_Node 4 Generate or Template SQL|Node 4: Generate or Template SQL]]
-- [[_COMMUNITY_Chatbot Code Walkthrough|Chatbot Code Walkthrough]]
-- [[_COMMUNITY_Node 2 Classify Intent|Node 2: Classify Intent]]
-- [[_COMMUNITY_Node 8 Format Answer|Node 8: Format Answer]]
-- [[_COMMUNITY_Node 1 Normalize Question|Node 1: Normalize Question]]
-- [[_COMMUNITY_Node 3 Retrieve Context|Node 3: Retrieve Context]]
-- [[_COMMUNITY_Node 6 Dry-Run Explain|Node 6: Dry-Run Explain]]
-- [[_COMMUNITY_Node 7 Execute Query|Node 7: Execute Query]]
-- [[_COMMUNITY_Graph Construction|Graph Construction]]
-- [[_COMMUNITY_Import-Time Data Loading|Import-Time Data Loading]]
-- [[_COMMUNITY_Node 5 Validate SQL|Node 5: Validate SQL]]
-- [[_COMMUNITY_Node 9 Record Trace and Cache Query|Node 9: Record Trace and Cache Query]]
-- [[_COMMUNITY_Route After Validation|Route After Validation]]
-- [[_COMMUNITY_Startup|Startup]]
-- [[_COMMUNITY_Route After Execute|Route After Execute]]
-- [[_COMMUNITY_Route After Explain|Route After Explain]]
-- [[_COMMUNITY_Route After SQL Generation|Route After SQL Generation]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Chatbot Code Walkthrough` - 29 edges
-2. `build_graph()` - 16 edges
-3. `run_turn()` - 13 edges
-4. `Build Prompt: Furniture Natural-Language Query Tool` - 13 edges
-5. `main()` - 11 edges
-6. `assert_blocked()` - 11 edges
-7. `validate_sql()` - 10 edges
-8. `Manual Acceptance Tests` - 10 edges
-9. `_connect()` - 9 edges
-10. `generate_or_template_sql()` - 9 edges
+1. `build_graph()` - 16 edges
+2. `run_turn()` - 13 edges
+3. `Build Prompt: Furniture Natural-Language Query Tool` - 13 edges
+4. `main()` - 11 edges
+5. `assert_blocked()` - 11 edges
+6. `validate_sql()` - 10 edges
+7. `Manual Acceptance Tests` - 10 edges
+8. `_connect()` - 9 edges
+9. `generate_or_template_sql()` - 9 edges
+10. `normalize_question_text()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `main()` --calls--> `run_turn()`  [EXTRACTED]
@@ -95,7 +78,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (54 total, 27 thin omitted)
+## Communities (37 total, 23 thin omitted)
 
 ### Community 0 - "Pipeline Node Logic"
 Cohesion: 0.15
@@ -145,77 +128,23 @@ Nodes (10): 1. Breakdown default, 2. Direct count, 3. Total across everything, 4
 Cohesion: 0.33
 Nodes (4): Architecture, Commands, Guardrails specific to this project, What this is
 
-### Community 37 - "Node 4: Generate or Template SQL"
-Cohesion: 0.12
-Nodes (16): Branch A: Ambiguous Intent, Branch B: Fallback Intent, Branch C: Memory Hit, Branch D: Template Intent, Branch E: LLM SQL Generation, Node 4: Generate or Template SQL, `pipeline.llm::chat(system, messages)`, `pipeline.llm::_get_client()` (+8 more)
-
-### Community 38 - "Chatbot Code Walkthrough"
-Cohesion: 0.14
-Nodes (13): Chatbot Code Walkthrough, Clarification Path, Fallback Path, High-Level Shape, Initial State, LLM SQL Example Path, Normal Successful Template Example, Retry Path (+5 more)
-
-### Community 39 - "Node 2: Classify Intent"
-Cohesion: 0.40
-Nodes (5): Node 2: Classify Intent, `pipeline.nodes::classify_intent_node(state)`, `pipeline.query_memory::lookup(question)`, `pipeline.templates::classify_intent(question, categories, subtypes)`, `pipeline.templates::find_catalog_match(question, categories, subtypes)`
-
-### Community 40 - "Node 8: Format Answer"
-Cohesion: 0.50
-Nodes (4): LLM Answer Composition Branch, Node 8: Format Answer, `pipeline.nodes::_deterministic_answer(state)`, `pipeline.nodes::format_answer(state)`
-
-### Community 41 - "Node 1: Normalize Question"
-Cohesion: 0.50
-Nodes (4): Node 1: Normalize Question, `pipeline.nodes::normalize_question(state)`, `pipeline.nodes::_resolve_followup_question(question, conversation)`, `pipeline.retrieval::normalize_question_text(question)`
-
-### Community 42 - "Node 3: Retrieve Context"
-Cohesion: 0.50
-Nodes (4): Node 3: Retrieve Context, `pipeline.nodes::retrieve_context_node(state)`, `pipeline.retrieval::retrieve_context(question, catalog, samples)`, `pipeline.semantic_layer::semantic_context_text()`
-
-### Community 43 - "Node 6: Dry-Run Explain"
-Cohesion: 0.50
-Nodes (4): Node 6: Dry-Run Explain, `pipeline.db::_connect()`, `pipeline.db::explain(sql)`, `pipeline.nodes::dry_run_explain(state)`
-
-### Community 44 - "Node 7: Execute Query"
-Cohesion: 0.50
-Nodes (4): Node 7: Execute Query, `pipeline.db::run_query(sql)`, `pipeline.db::run_readonly(sql)`, `pipeline.nodes::execute_query(state)`
-
-### Community 45 - "Graph Construction"
-Cohesion: 0.67
-Nodes (3): Graph Construction, `pipeline.graph::build_graph()`, `pipeline.graph::run_turn(question, conversation)`
-
-### Community 46 - "Import-Time Data Loading"
-Cohesion: 0.67
-Nodes (3): Import-Time Data Loading, `pipeline.db::get_category_catalog()`, `pipeline.db::sample_values()`
-
-### Community 47 - "Node 5: Validate SQL"
-Cohesion: 0.67
-Nodes (3): Node 5: Validate SQL, `pipeline.nodes::validate_sql_node(state)`, `pipeline.sql_guard::validate_sql(sql, allowed)`
-
-### Community 48 - "Node 9: Record Trace and Cache Query"
-Cohesion: 0.67
-Nodes (3): Node 9: Record Trace and Cache Query, `pipeline.nodes::record_trace(state)`, `pipeline.query_memory::remember(question, sql, rows, source, intent)`
-
-### Community 49 - "Route After Validation"
-Cohesion: 0.67
-Nodes (3): `pipeline.graph::_can_retry(state)`, `pipeline.graph::_route_after_validate(state)`, Route After Validation
-
 ## Knowledge Gaps
-- **129 isolated node(s):** `Column`, `Table`, `furniture-nlq`, `Project Structure & Module Organization`, `Build, Test, and Development Commands` (+124 more)
+- **71 isolated node(s):** `Column`, `Table`, `furniture-nlq`, `Project Structure & Module Organization`, `Build, Test, and Development Commands` (+66 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **27 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Chatbot Code Walkthrough` connect `Chatbot Code Walkthrough` to `Node 4: Generate or Template SQL`, `Node 2: Classify Intent`, `Node 8: Format Answer`, `Node 1: Normalize Question`, `Node 3: Retrieve Context`, `Node 6: Dry-Run Explain`, `Node 7: Execute Query`, `Graph Construction`, `Import-Time Data Loading`, `Node 5: Validate SQL`, `Node 9: Record Trace and Cache Query`, `Route After Validation`, `Startup`, `Route After Execute`, `Route After Explain`, `Route After SQL Generation`?**
-  _High betweenness centrality (0.075) - this node is a cross-community bridge._
 - **Why does `run_turn()` connect `REPL Template Tests` to `Graph Routing Flow`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+  _High betweenness centrality (0.068) - this node is a cross-community bridge._
 - **Why does `validate_sql()` connect `SQL Validator Internals` to `Pipeline Node Logic`, `SQL Guard Tests`, `Graph Routing Flow`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Why does `build_graph()` connect `Graph Routing Flow` to `Pipeline Node Logic`, `REPL Template Tests`?**
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
 - **Are the 14 inferred relationships involving `build_graph()` (e.g. with `_route_after_execute()` and `_route_after_explain()`) actually correct?**
   _`build_graph()` has 14 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Column`, `Table`, `furniture-nlq` to the rest of the system?**
-  _135 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _77 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `OpenRouter Client` be split into smaller, more focused modules?**
   _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
-- **Should `Node 4: Generate or Template SQL` be split into smaller, more focused modules?**
-  _Cohesion score 0.125 - nodes in this community are weakly interconnected._

@@ -1617,6 +1617,786 @@
       "norm_label": "slide 12"
     },
     {
+      "label": "walk_through.md",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_walk_through",
+      "community": 38,
+      "norm_label": "walk_through.md"
+    },
+    {
+      "label": "Chatbot Code Walkthrough",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_walk_through_chatbot_code_walkthrough",
+      "community": 38,
+      "norm_label": "chatbot code walkthrough"
+    },
+    {
+      "label": "High-Level Shape",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "docs_walk_through_high_level_shape",
+      "community": 38,
+      "norm_label": "high-level shape"
+    },
+    {
+      "label": "Startup",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "docs_walk_through_startup",
+      "community": 50,
+      "norm_label": "startup"
+    },
+    {
+      "label": "`chat.py::main()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "docs_walk_through_chat_py_main",
+      "community": 50,
+      "norm_label": "`chat.py::main()`"
+    },
+    {
+      "label": "User Prompt Entry",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "docs_walk_through_user_prompt_entry",
+      "community": 38,
+      "norm_label": "user prompt entry"
+    },
+    {
+      "label": "Graph Construction",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "docs_walk_through_graph_construction",
+      "community": 45,
+      "norm_label": "graph construction"
+    },
+    {
+      "label": "`pipeline.graph::run_turn(question, conversation)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_graph_run_turn_question_conversation",
+      "community": 45,
+      "norm_label": "`pipeline.graph::run_turn(question, conversation)`"
+    },
+    {
+      "label": "`pipeline.graph::build_graph()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_graph_build_graph",
+      "community": 45,
+      "norm_label": "`pipeline.graph::build_graph()`"
+    },
+    {
+      "label": "Initial State",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L131",
+      "_origin": "ast",
+      "id": "docs_walk_through_initial_state",
+      "community": 38,
+      "norm_label": "initial state"
+    },
+    {
+      "label": "Node 1: Normalize Question",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L164",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_1_normalize_question",
+      "community": 41,
+      "norm_label": "node 1: normalize question"
+    },
+    {
+      "label": "`pipeline.nodes::normalize_question(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_normalize_question_state",
+      "community": 41,
+      "norm_label": "`pipeline.nodes::normalize_question(state)`"
+    },
+    {
+      "label": "`pipeline.nodes::_resolve_followup_question(question, conversation)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L186",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_resolve_followup_question_question_conversation",
+      "community": 41,
+      "norm_label": "`pipeline.nodes::_resolve_followup_question(question, conversation)`"
+    },
+    {
+      "label": "`pipeline.retrieval::normalize_question_text(question)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L196",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_retrieval_normalize_question_text_question",
+      "community": 41,
+      "norm_label": "`pipeline.retrieval::normalize_question_text(question)`"
+    },
+    {
+      "label": "Node 2: Classify Intent",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L234",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_2_classify_intent",
+      "community": 39,
+      "norm_label": "node 2: classify intent"
+    },
+    {
+      "label": "`pipeline.nodes::classify_intent_node(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L236",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_classify_intent_node_state",
+      "community": 39,
+      "norm_label": "`pipeline.nodes::classify_intent_node(state)`"
+    },
+    {
+      "label": "`pipeline.query_memory::lookup(question)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L244",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_query_memory_lookup_question",
+      "community": 39,
+      "norm_label": "`pipeline.query_memory::lookup(question)`"
+    },
+    {
+      "label": "`pipeline.templates::classify_intent(question, categories, subtypes)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L274",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_templates_classify_intent_question_categories_subtypes",
+      "community": 39,
+      "norm_label": "`pipeline.templates::classify_intent(question, categories, subtypes)`"
+    },
+    {
+      "label": "`pipeline.templates::find_catalog_match(question, categories, subtypes)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L296",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_templates_find_catalog_match_question_categories_subtypes",
+      "community": 39,
+      "norm_label": "`pipeline.templates::find_catalog_match(question, categories, subtypes)`"
+    },
+    {
+      "label": "Node 3: Retrieve Context",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L320",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_3_retrieve_context",
+      "community": 42,
+      "norm_label": "node 3: retrieve context"
+    },
+    {
+      "label": "`pipeline.nodes::retrieve_context_node(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L322",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_retrieve_context_node_state",
+      "community": 42,
+      "norm_label": "`pipeline.nodes::retrieve_context_node(state)`"
+    },
+    {
+      "label": "`pipeline.retrieval::retrieve_context(question, catalog, samples)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L342",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_retrieval_retrieve_context_question_catalog_samples",
+      "community": 42,
+      "norm_label": "`pipeline.retrieval::retrieve_context(question, catalog, samples)`"
+    },
+    {
+      "label": "`pipeline.semantic_layer::semantic_context_text()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L352",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_semantic_layer_semantic_context_text",
+      "community": 42,
+      "norm_label": "`pipeline.semantic_layer::semantic_context_text()`"
+    },
+    {
+      "label": "Node 4: Generate or Template SQL",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L385",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_4_generate_or_template_sql",
+      "community": 37,
+      "norm_label": "node 4: generate or template sql"
+    },
+    {
+      "label": "`pipeline.nodes::generate_or_template_sql(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L387",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_generate_or_template_sql_state",
+      "community": 37,
+      "norm_label": "`pipeline.nodes::generate_or_template_sql(state)`"
+    },
+    {
+      "label": "Branch A: Ambiguous Intent",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L397",
+      "_origin": "ast",
+      "id": "docs_walk_through_branch_a_ambiguous_intent",
+      "community": 37,
+      "norm_label": "branch a: ambiguous intent"
+    },
+    {
+      "label": "Branch B: Fallback Intent",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L417",
+      "_origin": "ast",
+      "id": "docs_walk_through_branch_b_fallback_intent",
+      "community": 37,
+      "norm_label": "branch b: fallback intent"
+    },
+    {
+      "label": "`pipeline.nodes::_answer_from_history_or_none(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L433",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_answer_from_history_or_none_state",
+      "community": 37,
+      "norm_label": "`pipeline.nodes::_answer_from_history_or_none(state)`"
+    },
+    {
+      "label": "`pipeline.llm::chat(system, messages)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L445",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_llm_chat_system_messages",
+      "community": 37,
+      "norm_label": "`pipeline.llm::chat(system, messages)`"
+    },
+    {
+      "label": "`pipeline.llm::_get_client()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L463",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_llm_get_client",
+      "community": 37,
+      "norm_label": "`pipeline.llm::_get_client()`"
+    },
+    {
+      "label": "`pipeline.nodes::_answer_total_cost_from_history(question, conversation)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L486",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_answer_total_cost_from_history_question_conversation",
+      "community": 37,
+      "norm_label": "`pipeline.nodes::_answer_total_cost_from_history(question, conversation)`"
+    },
+    {
+      "label": "`pipeline.nodes::_format_history_total_cost(quantity, unit_price)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L498",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_format_history_total_cost_quantity_unit_price",
+      "community": 37,
+      "norm_label": "`pipeline.nodes::_format_history_total_cost(quantity, unit_price)`"
+    },
+    {
+      "label": "Branch C: Memory Hit",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L516",
+      "_origin": "ast",
+      "id": "docs_walk_through_branch_c_memory_hit",
+      "community": 37,
+      "norm_label": "branch c: memory hit"
+    },
+    {
+      "label": "Branch D: Template Intent",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L534",
+      "_origin": "ast",
+      "id": "docs_walk_through_branch_d_template_intent",
+      "community": 37,
+      "norm_label": "branch d: template intent"
+    },
+    {
+      "label": "`pipeline.templates::sql_for_intent(intent)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L548",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_templates_sql_for_intent_intent",
+      "community": 37,
+      "norm_label": "`pipeline.templates::sql_for_intent(intent)`"
+    },
+    {
+      "label": "Branch E: LLM SQL Generation",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L571",
+      "_origin": "ast",
+      "id": "docs_walk_through_branch_e_llm_sql_generation",
+      "community": 37,
+      "norm_label": "branch e: llm sql generation"
+    },
+    {
+      "label": "`pipeline.prompts::sql_generation_prompt(context)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L593",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_prompts_sql_generation_prompt_context",
+      "community": 37,
+      "norm_label": "`pipeline.prompts::sql_generation_prompt(context)`"
+    },
+    {
+      "label": "`pipeline.nodes::_parse_json_response(raw)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L630",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_parse_json_response_raw",
+      "community": 37,
+      "norm_label": "`pipeline.nodes::_parse_json_response(raw)`"
+    },
+    {
+      "label": "`pipeline.nodes::_failure(state, reason, failure_type)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L646",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_failure_state_reason_failure_type",
+      "community": 37,
+      "norm_label": "`pipeline.nodes::_failure(state, reason, failure_type)`"
+    },
+    {
+      "label": "Route After SQL Generation",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L669",
+      "_origin": "ast",
+      "id": "docs_walk_through_route_after_sql_generation",
+      "community": 53,
+      "norm_label": "route after sql generation"
+    },
+    {
+      "label": "`pipeline.graph::_route_after_generate(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L671",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_graph_route_after_generate_state",
+      "community": 53,
+      "norm_label": "`pipeline.graph::_route_after_generate(state)`"
+    },
+    {
+      "label": "Node 5: Validate SQL",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L689",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_5_validate_sql",
+      "community": 47,
+      "norm_label": "node 5: validate sql"
+    },
+    {
+      "label": "`pipeline.nodes::validate_sql_node(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L691",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_validate_sql_node_state",
+      "community": 47,
+      "norm_label": "`pipeline.nodes::validate_sql_node(state)`"
+    },
+    {
+      "label": "`pipeline.sql_guard::validate_sql(sql, allowed)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L708",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_sql_guard_validate_sql_sql_allowed",
+      "community": 47,
+      "norm_label": "`pipeline.sql_guard::validate_sql(sql, allowed)`"
+    },
+    {
+      "label": "Route After Validation",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L766",
+      "_origin": "ast",
+      "id": "docs_walk_through_route_after_validation",
+      "community": 49,
+      "norm_label": "route after validation"
+    },
+    {
+      "label": "`pipeline.graph::_route_after_validate(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L768",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_graph_route_after_validate_state",
+      "community": 49,
+      "norm_label": "`pipeline.graph::_route_after_validate(state)`"
+    },
+    {
+      "label": "`pipeline.graph::_can_retry(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L782",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_graph_can_retry_state",
+      "community": 49,
+      "norm_label": "`pipeline.graph::_can_retry(state)`"
+    },
+    {
+      "label": "Node 6: Dry-Run Explain",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L809",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_6_dry_run_explain",
+      "community": 43,
+      "norm_label": "node 6: dry-run explain"
+    },
+    {
+      "label": "`pipeline.nodes::dry_run_explain(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L811",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_dry_run_explain_state",
+      "community": 43,
+      "norm_label": "`pipeline.nodes::dry_run_explain(state)`"
+    },
+    {
+      "label": "`pipeline.db::explain(sql)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L821",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_db_explain_sql",
+      "community": 43,
+      "norm_label": "`pipeline.db::explain(sql)`"
+    },
+    {
+      "label": "`pipeline.db::_connect()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L835",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_db_connect",
+      "community": 43,
+      "norm_label": "`pipeline.db::_connect()`"
+    },
+    {
+      "label": "Route After Explain",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L877",
+      "_origin": "ast",
+      "id": "docs_walk_through_route_after_explain",
+      "community": 52,
+      "norm_label": "route after explain"
+    },
+    {
+      "label": "`pipeline.graph::_route_after_explain(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L879",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_graph_route_after_explain_state",
+      "community": 52,
+      "norm_label": "`pipeline.graph::_route_after_explain(state)`"
+    },
+    {
+      "label": "Node 7: Execute Query",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L899",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_7_execute_query",
+      "community": 44,
+      "norm_label": "node 7: execute query"
+    },
+    {
+      "label": "`pipeline.nodes::execute_query(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L901",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_execute_query_state",
+      "community": 44,
+      "norm_label": "`pipeline.nodes::execute_query(state)`"
+    },
+    {
+      "label": "`pipeline.db::run_readonly(sql)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L909",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_db_run_readonly_sql",
+      "community": 44,
+      "norm_label": "`pipeline.db::run_readonly(sql)`"
+    },
+    {
+      "label": "`pipeline.db::run_query(sql)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L917",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_db_run_query_sql",
+      "community": 44,
+      "norm_label": "`pipeline.db::run_query(sql)`"
+    },
+    {
+      "label": "Route After Execute",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L977",
+      "_origin": "ast",
+      "id": "docs_walk_through_route_after_execute",
+      "community": 51,
+      "norm_label": "route after execute"
+    },
+    {
+      "label": "`pipeline.graph::_route_after_execute(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L979",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_graph_route_after_execute_state",
+      "community": 51,
+      "norm_label": "`pipeline.graph::_route_after_execute(state)`"
+    },
+    {
+      "label": "Node 8: Format Answer",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1001",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_8_format_answer",
+      "community": 40,
+      "norm_label": "node 8: format answer"
+    },
+    {
+      "label": "`pipeline.nodes::format_answer(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1003",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_format_answer_state",
+      "community": 40,
+      "norm_label": "`pipeline.nodes::format_answer(state)`"
+    },
+    {
+      "label": "`pipeline.nodes::_deterministic_answer(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1025",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_deterministic_answer_state",
+      "community": 40,
+      "norm_label": "`pipeline.nodes::_deterministic_answer(state)`"
+    },
+    {
+      "label": "LLM Answer Composition Branch",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1063",
+      "_origin": "ast",
+      "id": "docs_walk_through_llm_answer_composition_branch",
+      "community": 40,
+      "norm_label": "llm answer composition branch"
+    },
+    {
+      "label": "Node 9: Record Trace and Cache Query",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1097",
+      "_origin": "ast",
+      "id": "docs_walk_through_node_9_record_trace_and_cache_query",
+      "community": 48,
+      "norm_label": "node 9: record trace and cache query"
+    },
+    {
+      "label": "`pipeline.nodes::record_trace(state)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1099",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_nodes_record_trace_state",
+      "community": 48,
+      "norm_label": "`pipeline.nodes::record_trace(state)`"
+    },
+    {
+      "label": "`pipeline.query_memory::remember(question, sql, rows, source, intent)`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1123",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_query_memory_remember_question_sql_rows_source_intent",
+      "community": 48,
+      "norm_label": "`pipeline.query_memory::remember(question, sql, rows, source, intent)`"
+    },
+    {
+      "label": "Returning to `run_turn()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1147",
+      "_origin": "ast",
+      "id": "docs_walk_through_returning_to_run_turn",
+      "community": 38,
+      "norm_label": "returning to `run_turn()`"
+    },
+    {
+      "label": "Returning to the Terminal",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1169",
+      "_origin": "ast",
+      "id": "docs_walk_through_returning_to_the_terminal",
+      "community": 38,
+      "norm_label": "returning to the terminal"
+    },
+    {
+      "label": "Normal Successful Template Example",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1197",
+      "_origin": "ast",
+      "id": "docs_walk_through_normal_successful_template_example",
+      "community": 38,
+      "norm_label": "normal successful template example"
+    },
+    {
+      "label": "LLM SQL Example Path",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1252",
+      "_origin": "ast",
+      "id": "docs_walk_through_llm_sql_example_path",
+      "community": 38,
+      "norm_label": "llm sql example path"
+    },
+    {
+      "label": "Retry Path",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1282",
+      "_origin": "ast",
+      "id": "docs_walk_through_retry_path",
+      "community": 38,
+      "norm_label": "retry path"
+    },
+    {
+      "label": "Clarification Path",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1305",
+      "_origin": "ast",
+      "id": "docs_walk_through_clarification_path",
+      "community": 38,
+      "norm_label": "clarification path"
+    },
+    {
+      "label": "Fallback Path",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1337",
+      "_origin": "ast",
+      "id": "docs_walk_through_fallback_path",
+      "community": 38,
+      "norm_label": "fallback path"
+    },
+    {
+      "label": "Safety Model",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1350",
+      "_origin": "ast",
+      "id": "docs_walk_through_safety_model",
+      "community": 38,
+      "norm_label": "safety model"
+    },
+    {
+      "label": "Import-Time Data Loading",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1379",
+      "_origin": "ast",
+      "id": "docs_walk_through_import_time_data_loading",
+      "community": 46,
+      "norm_label": "import-time data loading"
+    },
+    {
+      "label": "`pipeline.db::sample_values()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1388",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_db_sample_values",
+      "community": 46,
+      "norm_label": "`pipeline.db::sample_values()`"
+    },
+    {
+      "label": "`pipeline.db::get_category_catalog()`",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1398",
+      "_origin": "ast",
+      "id": "docs_walk_through_pipeline_db_get_category_catalog",
+      "community": 46,
+      "norm_label": "`pipeline.db::get_category_catalog()`"
+    },
+    {
+      "label": "What To Emphasize In An Interview",
+      "file_type": "document",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1409",
+      "_origin": "ast",
+      "id": "docs_walk_through_what_to_emphasize_in_an_interview",
+      "community": 38,
+      "norm_label": "what to emphasize in an interview"
+    },
+    {
       "label": "test_manual.md",
       "file_type": "document",
       "source_file": "tests/test_manual.md",
@@ -5091,6 +5871,776 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_walk_through",
+      "target": "docs_walk_through_chatbot_code_walkthrough",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1305",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_clarification_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1337",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_fallback_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_graph_construction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_high_level_shape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1379",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_import_time_data_loading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_initial_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1252",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_llm_sql_example_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_1_normalize_question",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L234",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_2_classify_intent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L320",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_3_retrieve_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L385",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_4_generate_or_template_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L689",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_5_validate_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L809",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_6_dry_run_explain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L899",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_7_execute_query",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1001",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_8_format_answer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1097",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_node_9_record_trace_and_cache_query",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1197",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_normal_successful_template_example",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1282",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_retry_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1147",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_returning_to_run_turn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1169",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_returning_to_the_terminal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L977",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_route_after_execute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L877",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_route_after_explain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L669",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_route_after_sql_generation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L766",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_route_after_validation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1350",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_safety_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_startup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_user_prompt_entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1409",
+      "weight": 1.0,
+      "source": "docs_walk_through_chatbot_code_walkthrough",
+      "target": "docs_walk_through_what_to_emphasize_in_an_interview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "docs_walk_through_startup",
+      "target": "docs_walk_through_chat_py_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "docs_walk_through_graph_construction",
+      "target": "docs_walk_through_pipeline_graph_build_graph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "docs_walk_through_graph_construction",
+      "target": "docs_walk_through_pipeline_graph_run_turn_question_conversation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_1_normalize_question",
+      "target": "docs_walk_through_pipeline_nodes_normalize_question_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L186",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_1_normalize_question",
+      "target": "docs_walk_through_pipeline_nodes_resolve_followup_question_question_conversation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L196",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_1_normalize_question",
+      "target": "docs_walk_through_pipeline_retrieval_normalize_question_text_question",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L236",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_2_classify_intent",
+      "target": "docs_walk_through_pipeline_nodes_classify_intent_node_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L244",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_2_classify_intent",
+      "target": "docs_walk_through_pipeline_query_memory_lookup_question",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L274",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_2_classify_intent",
+      "target": "docs_walk_through_pipeline_templates_classify_intent_question_categories_subtypes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L296",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_2_classify_intent",
+      "target": "docs_walk_through_pipeline_templates_find_catalog_match_question_categories_subtypes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L322",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_3_retrieve_context",
+      "target": "docs_walk_through_pipeline_nodes_retrieve_context_node_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L342",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_3_retrieve_context",
+      "target": "docs_walk_through_pipeline_retrieval_retrieve_context_question_catalog_samples",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L352",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_3_retrieve_context",
+      "target": "docs_walk_through_pipeline_semantic_layer_semantic_context_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L397",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_4_generate_or_template_sql",
+      "target": "docs_walk_through_branch_a_ambiguous_intent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L417",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_4_generate_or_template_sql",
+      "target": "docs_walk_through_branch_b_fallback_intent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L516",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_4_generate_or_template_sql",
+      "target": "docs_walk_through_branch_c_memory_hit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L534",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_4_generate_or_template_sql",
+      "target": "docs_walk_through_branch_d_template_intent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L571",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_4_generate_or_template_sql",
+      "target": "docs_walk_through_branch_e_llm_sql_generation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L387",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_4_generate_or_template_sql",
+      "target": "docs_walk_through_pipeline_nodes_generate_or_template_sql_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L548",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_4_generate_or_template_sql",
+      "target": "docs_walk_through_pipeline_templates_sql_for_intent_intent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L445",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_b_fallback_intent",
+      "target": "docs_walk_through_pipeline_llm_chat_system_messages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L463",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_b_fallback_intent",
+      "target": "docs_walk_through_pipeline_llm_get_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L433",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_b_fallback_intent",
+      "target": "docs_walk_through_pipeline_nodes_answer_from_history_or_none_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L486",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_b_fallback_intent",
+      "target": "docs_walk_through_pipeline_nodes_answer_total_cost_from_history_question_conversation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L498",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_b_fallback_intent",
+      "target": "docs_walk_through_pipeline_nodes_format_history_total_cost_quantity_unit_price",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L646",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_e_llm_sql_generation",
+      "target": "docs_walk_through_pipeline_nodes_failure_state_reason_failure_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L630",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_e_llm_sql_generation",
+      "target": "docs_walk_through_pipeline_nodes_parse_json_response_raw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L593",
+      "weight": 1.0,
+      "source": "docs_walk_through_branch_e_llm_sql_generation",
+      "target": "docs_walk_through_pipeline_prompts_sql_generation_prompt_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L671",
+      "weight": 1.0,
+      "source": "docs_walk_through_route_after_sql_generation",
+      "target": "docs_walk_through_pipeline_graph_route_after_generate_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L691",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_5_validate_sql",
+      "target": "docs_walk_through_pipeline_nodes_validate_sql_node_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L708",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_5_validate_sql",
+      "target": "docs_walk_through_pipeline_sql_guard_validate_sql_sql_allowed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L782",
+      "weight": 1.0,
+      "source": "docs_walk_through_route_after_validation",
+      "target": "docs_walk_through_pipeline_graph_can_retry_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L768",
+      "weight": 1.0,
+      "source": "docs_walk_through_route_after_validation",
+      "target": "docs_walk_through_pipeline_graph_route_after_validate_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L835",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_6_dry_run_explain",
+      "target": "docs_walk_through_pipeline_db_connect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L821",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_6_dry_run_explain",
+      "target": "docs_walk_through_pipeline_db_explain_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L811",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_6_dry_run_explain",
+      "target": "docs_walk_through_pipeline_nodes_dry_run_explain_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L879",
+      "weight": 1.0,
+      "source": "docs_walk_through_route_after_explain",
+      "target": "docs_walk_through_pipeline_graph_route_after_explain_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L917",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_7_execute_query",
+      "target": "docs_walk_through_pipeline_db_run_query_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L909",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_7_execute_query",
+      "target": "docs_walk_through_pipeline_db_run_readonly_sql",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L901",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_7_execute_query",
+      "target": "docs_walk_through_pipeline_nodes_execute_query_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L979",
+      "weight": 1.0,
+      "source": "docs_walk_through_route_after_execute",
+      "target": "docs_walk_through_pipeline_graph_route_after_execute_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1063",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_8_format_answer",
+      "target": "docs_walk_through_llm_answer_composition_branch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1025",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_8_format_answer",
+      "target": "docs_walk_through_pipeline_nodes_deterministic_answer_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1003",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_8_format_answer",
+      "target": "docs_walk_through_pipeline_nodes_format_answer_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1099",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_9_record_trace_and_cache_query",
+      "target": "docs_walk_through_pipeline_nodes_record_trace_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1123",
+      "weight": 1.0,
+      "source": "docs_walk_through_node_9_record_trace_and_cache_query",
+      "target": "docs_walk_through_pipeline_query_memory_remember_question_sql_rows_source_intent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1398",
+      "weight": 1.0,
+      "source": "docs_walk_through_import_time_data_loading",
+      "target": "docs_walk_through_pipeline_db_get_category_catalog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/walk_through.md",
+      "source_location": "L1388",
+      "weight": 1.0,
+      "source": "docs_walk_through_import_time_data_loading",
+      "target": "docs_walk_through_pipeline_db_sample_values",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "tests/test_manual.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -5190,5 +6740,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f8da8f4efada63d6d9f84004be1bce8ec3eac961"
+  "built_at_commit": "81f685a076023fb2fc8a2eea1351041471e8b89b"
 }

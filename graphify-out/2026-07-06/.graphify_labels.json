@@ -35,22 +35,5 @@
   "33": "validate_sql",
   "34": "Breakdown Default Scenario",
   "35": "Clarify Path Scenario",
-  "36": "Safety Automated Checks",
-  "37": "Node 4: Generate or Template SQL",
-  "38": "Chatbot Code Walkthrough",
-  "39": "Node 2: Classify Intent",
-  "40": "Node 8: Format Answer",
-  "41": "Node 1: Normalize Question",
-  "42": "Node 3: Retrieve Context",
-  "43": "Node 6: Dry-Run Explain",
-  "44": "Node 7: Execute Query",
-  "45": "Graph Construction",
-  "46": "Import-Time Data Loading",
-  "47": "Node 5: Validate SQL",
-  "48": "Node 9: Record Trace and Cache Query",
-  "49": "Route After Validation",
-  "50": "Startup",
-  "51": "Route After Execute",
-  "52": "Route After Explain",
-  "53": "Route After SQL Generation"
+  "36": "Safety Automated Checks"
 }
